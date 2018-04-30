@@ -1,0 +1,48 @@
+
+server:
+  port: 8080
+
+## Logging
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  file: application.log
+
+## MongoDB
+
+spring:
+  data:
+    mongodb:
+#      host: localhost
+#      port: 27017
+#      uri: mongodb://user:secret@mongo1.example.com:12345,mongo2.example.com:23456/test
+      uri: mongodb://localhost:27017/user
+      grid-fs-database: images
+
+# REDIS (RedisProperties)
+
+#spring:
+#  redis:
+#    port: 6379 # Redis server port.
+#    cluster:
+#      max-redirects: # Maximum number of redirects to follow when executing commands across the cluster.
+#      nodes: # Comma-separated list of "host:port" pairs to bootstrap from.
+#    database: 0 # Database index used by the connection factory.
+#    url: # Connection URL. Overrides host, port, and password. User is ignored. Example: redis://user:password@example.com:6379
+#    host: localhost # Redis server host.
+#    lettuce:
+#      pool.max-active: 8 # Maximum number of connections that can be allocated by the pool at a given time. Use a negative value for no limit.
+#      pool.max-idle: 8 # Maximum number of "idle" connections in the pool. Use a negative value to indicate an unlimited number of idle connections.
+#      pool.max-wait: -1ms # Maximum amount of time a connection allocation should block before throwing an exception when the pool is exhausted. Use a negative value to block indefinitely.
+#      pool.min-idle: 0 # Target for the minimum number of idle connections to maintain in the pool. This setting only has an effect if it is positive.
+#      shutdown-timeout: 100ms # Shutdown timeout.
+#    password: # Login password of the redis server.
+#    sentinel:
+#      master: # Name of the Redis server.
+#      nodes: # Comma-separated list of "host:port" pairs.
+#    ssl: false # Whether to enable SSL support.
+#    timeout: # Connection timeout.

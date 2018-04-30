@@ -1,0 +1,5 @@
+rootProject.name = 'boot2-msa-skeleton'
+
+include 'user-service'
+include 'eureka-server'
+include 'config-server'

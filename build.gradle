@@ -1,0 +1,79 @@
+buildscript {
+    ext {
+        kotlinVersion = '1.2.20'
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+    }
+}
+
+plugins {
+    id "org.jmailen.kotlinter" version "1.11.1"
+}
+
+apply from: file('gradle-config/klint.gradle')
+
+subprojects {
+    apply plugin: 'kotlin'
+    apply plugin: 'kotlin-spring'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+
+    compileKotlin {
+        kotlinOptions {
+            freeCompilerArgs = ["-Xjsr305=strict"]
+            jvmTarget = "1.8"
+        }
+    }
+    compileTestKotlin {
+        kotlinOptions {
+            freeCompilerArgs = ["-Xjsr305=strict"]
+            jvmTarget = "1.8"
+        }
+    }
+
+    ext {
+        springCloudVersion = 'Finchley.RC1'
+    }
+
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral() // maven { url: 'http://jcenter.bintray.com' }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-webflux')
+        compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+        compile('org.springframework.cloud:spring-cloud-stream-reactive')
+        compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        compile("org.jetbrains.kotlin:kotlin-reflect")
+        compile("io.github.microutils:kotlin-logging:1.4.9")
+
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+        testCompile('io.projectreactor:reactor-test')
+        testCompile('org.springframework.cloud:spring-cloud-stream-test-support')
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+}
+
+
+
+
+

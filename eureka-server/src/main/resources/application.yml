@@ -1,0 +1,15 @@
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+---
+
+spring:
+  profiles: production
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true

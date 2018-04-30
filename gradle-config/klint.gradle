@@ -1,0 +1,6 @@
+subprojects {
+    kotlinter {
+        ignoreFailures = false
+        reporters = ['checkstyle', 'plain']
+    }
+}
